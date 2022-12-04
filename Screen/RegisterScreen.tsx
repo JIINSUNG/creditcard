@@ -8,10 +8,12 @@ import { useState } from "react";
 
 
 export default function RegisterScreen() {
-    const [text, onChangeText] = useState("");
-    const [number, onChangeNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    //@인성 사용자가 입력한 이메일,비밀번호를 이용한 회원등록 함수, 정상적인 등록 완료시 회원가입완료 팝업창을 띄워준다 
     const Register = ()=> {
-        createUserWithEmailAndPassword(auth, text, number)
+        createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
@@ -33,14 +35,14 @@ export default function RegisterScreen() {
       <Text>아이디</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        onChangeText={setEmail}
+        value={email}
       />
       <Text>비밀번호</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={setPassword}
+        value={password}
         placeholder=""
       />
       <Button title = "회원 가입하기" onPress = {Register}></Button>
