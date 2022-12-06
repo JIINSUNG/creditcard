@@ -18,10 +18,13 @@ import ManagerScreen from './Screen/ManagerScreen';
 import MasterScreen from './Screen/MasterScreen';
 import MyPageScreen from './Screen/MyPageScreen';
 import SettingScreen from './Screen/SettingScreen';
+import InformationScreen from './Screen/InformationScreen';
+import MysqlScreen from './Screen/MySQL';
 //@인성 사용자별 폰트 사이즈에 따라 화면이 깨지는 현상의 발생을 막도록
 //폰트 사이즈에 따른 크기가 변경이 되지 않도록 만들어준다
 if ((Text as any).defaultProps == null) (Text as any).defaultProps = {};
 (Text as any).defaultProps.allowFontScaling = false;
+
 
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +59,8 @@ export default function App() {
         <Stack.Screen name="Master" component={MasterScreen}/>
         <Stack.Screen name="MyPage" component={MyPageScreen}/>
         <Stack.Screen name="Setting" component={SettingScreen}/>
+        <Stack.Screen name="Information" component={InformationScreen}/>
+        <Stack.Screen name="Mysql" component={MysqlScreen}/>
       </Stack.Navigator>
       </NavigationContainer>
   );

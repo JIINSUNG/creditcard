@@ -4,11 +4,11 @@ import { useState } from "react";
 
 
 
-export default function MasterScreen() {
-
+export default function InformationScreen({navigation,route}:any) {
+  //@인성 가맹점에 대한 정보와 가장 혜택이 좋은 것이 무엇인지를 알려주는 페이지 
   return (
     <View style = {styles.container}>
-      <Text>이곳은 관리자 페이지 입니다</Text>
+      <Text>입력하신 값은 {route.params.title} 입니다</Text>
     </View>
   )
 

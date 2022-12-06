@@ -10,6 +10,8 @@ export default function App({navigation}:any) {
         <Text>극한의 이득춘</Text>
         <Text onPress={() => {navigation.navigate("Register")}}>회원가입화면으로</Text>
         <Text onPress={() => {navigation.navigate("Login")}}>로그인화면으로</Text>
+        <Text onPress={() => {navigation.navigate("Mysql")}}>DB화면으로</Text>
+
         <StatusBar style="auto" />
       </View>
     )

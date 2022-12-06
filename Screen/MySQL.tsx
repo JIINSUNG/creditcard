@@ -4,16 +4,18 @@ import { useState } from "react";
 
 
 
-export default function MasterScreen() {
+export default function MysqlScreen({navigation}:any) {
+ const [data,setData] = useState("")
 
+  
   return (
     <View style = {styles.container}>
-      <Text>이곳은 관리자 페이지 입니다</Text>
+        <Text>Hello</Text>
     </View>
   )
 
   
-}
+  }
 
 const styles = StyleSheet.create({
     container: {
@@ -25,3 +27,4 @@ const styles = StyleSheet.create({
 
   });
   
+ 

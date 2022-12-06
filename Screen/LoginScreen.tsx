@@ -6,10 +6,14 @@ import { auth } from "../Firebase/Firebase";
 
 
 export default function LoginScreen({navigation}:any) {
-    const [text, onChangeText] = useState("");
-    const [number, onChangeNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    //@인성 사용자가 이메일, 비밀번호를 입력후 로그인버튼을 누르면 
+    //해당 정보가 파이어베이스 서버에 있는지 확인후 로그인 수행
+    //로그인 성공시 메인페이지로 이동, 실패시 실패이유를 알림창으로 띄워줌
     const Login = ()=> {
-        signInWithEmailAndPassword(auth, text, number)
+        signInWithEmailAndPassword(auth, email,password)
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
@@ -30,14 +34,14 @@ export default function LoginScreen({navigation}:any) {
       <Text>아이디</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        onChangeText={setEmail}
+        value={email}
       />
       <Text>비밀번호</Text>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
+        onChangeText={setPassword}
+        value={password}
         placeholder=""
       />
       <Button title = "로그인 하기" onPress = {Login}></Button>

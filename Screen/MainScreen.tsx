@@ -27,9 +27,10 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
   }*/  
 
 
-export default function MainScreen() {
-
+export default function MainScreen({navigation}:any) {
+  const [name,setName] = useState("1234")
   return (
+    //@메인페이지, 사용자가 원하는 가맹점을 검색하면 해당하는 가맹점에 대한 정보페이지로 이동
     <SafeAreaView style = {styles.container}>
     <View style = {styles.header}>
     <View style = {{flexDirection : "row", alignItems : "center"}}>
@@ -43,8 +44,9 @@ export default function MainScreen() {
         <Text>혜택을 알고 싶은 가맹점을 검색해보세요</Text>
         <Text>현재 용인지역화폐 가맹점 및 일부 프랜차이즈만 지원 중입니다</Text>
         <View style = {{flexDirection : "row"}}>
-        <TextInput style = {{width : 200, height : 40, borderWidth:1, marginHorizontal : 10,}}></TextInput>
-        <Button title="검색"></Button>
+        <TextInput style = {{width : 200, height : 40, borderWidth:1, marginHorizontal : 10,}} onChangeText={setName} value={name}></TextInput>
+        <Text>입력한 값은 {name}</Text>
+        <Button title="검색" onPress={()=> {navigation.navigate('Information',{title : name})}}></Button>
         </View>
         </View>
     <View style = {styles.footer}>
