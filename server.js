@@ -5,6 +5,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cors = require("cors");
+var word = "hello"
 
 //@인성 다른 프로토콜을 이용한 통신시 HTTP의 보안 문제가 발생함으로 cors 통신을 이용
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+  console.log(`${word}`)
 })
 
 app.listen(port, () => {
@@ -20,7 +22,7 @@ app.listen(port, () => {
 
 const mysql      = require('mysql');
 const connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : '127.0.0.1',
   user     : 'root',
   password : '12345678',
   database : 'creditcard'
@@ -37,6 +39,22 @@ app.get('/stores', (req, res) => {
     }
   });
 });
+
+app.get('/get', (req, res) => {
+  var name = req.query.name
+  connection.query(`SELECT * FROM Stores where 가맹점명 LIKE '%${name}%'`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(name)
+      console.log(result)
+      res.send(result)
+    }
+  });
+});
+
+
+
 
 
 

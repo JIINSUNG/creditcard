@@ -11,6 +11,7 @@ export default function App({navigation}:any) {
         <Text onPress={() => {navigation.navigate("Register")}}>회원가입화면으로</Text>
         <Text onPress={() => {navigation.navigate("Login")}}>로그인화면으로</Text>
         <Text onPress={() => {navigation.navigate("Mysql")}}>DB화면으로</Text>
+        <Text onPress={() => {navigation.navigate("Store")}}>스토어리스트로</Text>
 
         <StatusBar style="auto" />
       </View>

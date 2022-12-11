@@ -46,7 +46,7 @@ export default function MainScreen({navigation}:any) {
         <View style = {{flexDirection : "row"}}>
         <TextInput style = {{width : 200, height : 40, borderWidth:1, marginHorizontal : 10,}} onChangeText={setName} value={name}></TextInput>
         <Text>입력한 값은 {name}</Text>
-        <Button title="검색" onPress={()=> {navigation.navigate('Information',{title : name})}}></Button>
+        <Button title="검색" onPress={()=> {navigation.navigate('Store',{title : name})}}></Button>
         </View>
         </View>
     <View style = {styles.footer}>
