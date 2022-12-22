@@ -30,16 +30,6 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/stores', (req, res) => {
-  connection.query("SELECT * FROM Stores", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result)
-    }
-  });
-});
-
 app.get('/get', (req, res) => {
   var name = req.query.name
   connection.query(`SELECT * FROM Stores where 가맹점명 LIKE '%${name}%'`, (err, result) => {
@@ -50,11 +40,26 @@ app.get('/get', (req, res) => {
       console.log(result)
       res.send(result)
     }
+  })});
+
+app.get('/stores', (req, res) => {
+  connection.query("SELECT * FROM Stores", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result)
+    }
   });
 });
 
-
-
-
-
-
+app.get('/benefit', (req, res) => {
+  var name = req.query.name
+  connection.query(`SELECT * FROM benefit where 적용브랜드 LIKE '%모든가맹점%' or 적용브랜드 LIKE '%${name}%' `, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(name)
+      console.log(result)
+      res.send(result)
+    }
+});});
