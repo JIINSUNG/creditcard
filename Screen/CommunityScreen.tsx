@@ -1,15 +1,18 @@
-import { View,Text,StyleSheet} from "react-native";
+import { View,Text,StyleSheet, SafeAreaView} from "react-native";
 import { useState } from "react";
+import { Banner, Footer } from "../ScreenModule/MenuModule";
 
 
 
-
-export default function CommunityScreen() {
+export default function CommunityScreen( {navigation} : any) {
 
   return (
-    <View style = {styles.container}>
-      <Text>커뮤니티 페이지</Text>
-    </View>
+
+    <SafeAreaView style = {styles.container}>
+    <Banner navigation = {navigation}/>
+    <View style = {styles.main}></View>
+    <Footer navigation = {navigation}/>
+    </SafeAreaView>
   )
 
   
@@ -22,6 +25,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-
+    main :
+    {
+      flex : 9
+    }
   });
   

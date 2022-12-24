@@ -1,7 +1,10 @@
-import { SafeAreaView,View,Text,StyleSheet,Image, Button} from "react-native";
+import { SafeAreaView,View,Text,StyleSheet,Image, Button,ScrollView, TouchableOpacity, Linking } from "react-native";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
+import {  TextInput } from "react-native-gesture-handler";
+import {Dimensions} from 'react-native';
+import { Banner,Footer } from "../ScreenModule/MenuModule";
+
 
 /*const navigation = useNavigation();
     const [data, setData] = useState([]);
@@ -30,31 +33,30 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 export default function MainScreen({navigation}:any) {
   const [name,setName] = useState("")
   return (
-    //@메인페이지, 사용자가 원하는 가맹점을 검색하면 해당하는 가맹점에 대한 정보페이지로 이동
+    //@인성 사용자가 원하는 가맹점을 검색하면 데이터베이스에서 검색후 리스트를 띄워줌
     <SafeAreaView style = {styles.container}>
-    <View style = {styles.header}>
-    <View style = {{flexDirection : "row", alignItems : "center"}}>
-    <Image source={require('../assets/splash.png')} style = {{width :40, height : 40}}></Image>
-    <Text>극한의 이득춘</Text>
-    </View>
-    <Text>메뉴</Text>
-    </View>
+      <Banner />
     <View style = {styles.main}>
-        <Text>이 페이지는 메인 화면입니다</Text>
         <Text>혜택을 알고 싶은 가맹점을 검색해보세요</Text>
         <Text>현재 용인지역화폐 가맹점 및 일부 프랜차이즈만 지원 중입니다</Text>
-        <View style = {{flexDirection : "row"}}>
-        <TextInput style = {{width : 200, height : 40, borderWidth:1, marginHorizontal : 10,}} onChangeText={setName} value={name}></TextInput>
+        <View style = {{flexDirection : "row", marginVertical : 25}}>
+        <TextInput style = {{width : 200, height : 40, borderWidth:1, marginHorizontal : 10, justifyContent : "center",alignItems : "center"}} placeholder="가맹점 또는 카드명을 입력해주세요" onChangeText={setName} value={name}></TextInput>
         <Button title="검색" onPress={()=> {navigation.navigate('Store',{title : name})}}></Button>
         </View>
         </View>
-    <View style = {styles.footer}>
-        <Text>홈</Text>
-        <Text>카드 관리</Text>
-        <Text>카드 추천</Text>
-        <Text>커뮤니티</Text>
-        <Text>설정</Text>
-    </View>
+      {/* @인성 카드광고, 설계사 홍보 등을 노출할 팝업창, 가로 슬라이드 애니메이션 적용예정, 누를시 해당 광고,홍보사이트 또는 상세페이지로 리다이렉션 */}
+      <View style = {styles.popup}>
+    <ScrollView horizontal = {true}>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.kbstar.com/')}}><View style = {styles.advertise}><Image source={require('../assets/kb.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.shinhan.com/')}}><View style = {styles.advertise}><Image source={require('../assets/sh.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.wooribank.com/')}}><View style = {styles.advertise}><Image source={require('../assets/wr.jpg')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://daangn.onelink.me/Zw03/8npnhrzq')}}><View style = {styles.advertise}><Image source={require('../assets/carrot.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    </ScrollView>
+      </View>
+      {/* */}
+
+      {/* @인성 하단 메뉴바 구성, 누르면 각 페이지로 이동 */}
+    <Footer navigation = {navigation}/>
     </SafeAreaView>
   )
 
@@ -75,17 +77,20 @@ const styles = StyleSheet.create({
     },
     main :
     {
-        flex : 5,
+        flex : 2,
         alignItems : "center"
     },
-    footer :
+    advertise :
     {
-        flex : 1,
-        flexDirection : "row",
-        alignItems : "center",
-        justifyContent : "space-between",
-        marginHorizontal : 10,
+      width : Dimensions.get('window').width, height : '100%', borderWidth : 1,
+      alignItems : "center", justifyContent : "center",
     },
+    popup :
+    {
+      flex : 7,
+      borderWidth : 1,
+    },
+
     scrollsText :
     {
         fontSize : 10,

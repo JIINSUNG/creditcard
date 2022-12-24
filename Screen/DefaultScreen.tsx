@@ -1,27 +1,31 @@
-import { View,Text,StyleSheet} from "react-native";
+import { View,Text,StyleSheet, SafeAreaView} from "react-native";
 import { useState } from "react";
+import { Banner, Footer } from "../ScreenModule/MenuModule";
 
 
 
-
-export default function RegisterScreen() {
+export default function DefaultScreen( {navigation} : any) {
 
   return (
-    <View style = {styles.container}>
 
-    </View>
+    <SafeAreaView style = {styles.container}>
+    <Banner navigation = {navigation}/>
+    <View style = {styles.main}></View>
+    <Footer navigation = {navigation}/>
+    </SafeAreaView>
   )
 
   
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+    main :
+    {
+      flex : 9
+    }
   });
   
