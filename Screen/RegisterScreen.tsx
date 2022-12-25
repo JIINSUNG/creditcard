@@ -1,13 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {app, auth} from '../Firebase/Firebase'
-import { View,Text,StyleSheet,Button, Alert,Image, SafeAreaView } from "react-native";
+import { View,Text,StyleSheet,Button, Alert,Image, SafeAreaView,Dimensions,ScrollView,TouchableOpacity,Linking } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { useState } from "react";
+import { Banner,Footer } from "../ScreenModule/MenuModule";
 
 
 
-
-export default function RegisterScreen() {
+export default function RegisterScreen({navigation}:any) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -31,31 +31,31 @@ export default function RegisterScreen() {
       }
   return (
     <SafeAreaView style = {styles.container}>
-    <View style = {styles.banner}>
-    <View>
-    <Image source={require('../assets/splash.png')} style = {{width :40, height : 40}}></Image>
-    <Text style = {styles.bannertitle}>극한의 이득춘</Text>
-    </View>
-    <View><Text style = {styles.bannertitle}>메뉴</Text></View>
-      
-    </View>
+    <Banner navigation = {navigation} />
     <View style = {{flex : 9, alignItems : "center", }}>
       <Text style = {styles.maintitle}>회원가입을 진행해주세요</Text>
-      <Text>사용할 아이디를 입력해주세요</Text>
       <TextInput
+        placeholder="사용할 아이디를 입력해주세요"
         style={styles.input}
         onChangeText={setEmail}
         value={email}
       />
-      <Text>비밀번호를 입력해주세요</Text>
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
-        placeholder=""
+        placeholder="사용할 비밀번호를 입력해주세요"
       />
       <Button title = "회원 가입하기" onPress = {Register}></Button>
     </View>
+    <View style = {styles.popup}>
+    <ScrollView horizontal = {true}>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.kbstar.com/')}}><View style = {styles.advertise}><Image source={require('../assets/kb.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.shinhan.com/')}}><View style = {styles.advertise}><Image source={require('../assets/sh.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://www.wooribank.com/')}}><View style = {styles.advertise}><Image source={require('../assets/wr.jpg')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    <TouchableOpacity onPress = {() => {Linking.openURL('https://daangn.onelink.me/Zw03/8npnhrzq')}}><View style = {styles.advertise}><Image source={require('../assets/carrot.png')} style = {{width :'100%', height : '100%', borderRadius : 20}}/></View></TouchableOpacity>
+    </ScrollView>
+      </View>
     </SafeAreaView>
   )
 
@@ -83,11 +83,22 @@ const styles = StyleSheet.create({
       fontWeight : "bold",
     },
     input: {
-        height: 40,
-        width : 250,
+      height: 50,
+      width : '90%',
+      borderRadius : 10,
         marginVertical : 10,
         borderWidth: 1,
         padding: 10,
+      },
+      advertise :
+      {
+        width : Dimensions.get('window').width, height : '100%', borderWidth : 1,
+        alignItems : "center", justifyContent : "center",
+      },
+      popup :
+      {
+        flex : 12,
+        borderWidth : 1,
       },
   });
   

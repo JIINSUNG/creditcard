@@ -13,7 +13,7 @@ export default function StorelistScreen({navigation,route}:any) {
   const [render,setRender] = useState(15);   
   const [refreshing, setRefreshing] = useState(false);
   const [data, setData] = useState([])
-  const wait = (timeout) => {
+  const wait = (timeout:number) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   }
   const onRefresh = () => {

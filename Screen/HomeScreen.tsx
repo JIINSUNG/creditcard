@@ -1,18 +1,29 @@
 import { StyleSheet, View,Text,Button } from "react-native"
 import { StatusBar } from 'expo-status-bar';
+import {useState,useEffect} from 'react'
 import { Image } from "react-native";
 import * as React from 'react';
 
 
 export default function App({navigation}:any) {
+    const [isTrue,setIsTrue] = useState(true)
+    
+    const wait = (timeout:number) => {
+      return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+
+    const animation = () => {
+      setIsTrue((props) => !props)
+    }
+    useEffect(()=> {setTimeout(animation,3000)},[isTrue])
 
     return (
       //@인성 화면중단 브랜드로고 노출
       //@인성 회원가입을 누르면 등록화면으로, 로그인하기를 누르면 로그인화면으로 이동 
         <View style={styles.container}>
-        <Image style={{width:200, height:200}} source={require('../assets/splash.png')}/>
+        <Image style={{width:200, height:200}} source={require('../assets/logo.jpg')}/>
         <View style = {{alignItems : "center", justifyContent : "center"}}>
-        <Text style = {styles.maintitle}>당신만을 위한 최고의 혜택 알리미</Text>
+        {isTrue? <Text style = {styles.maintitle}>당신만을 위한</Text>: <Text style = {styles.maintitle}>최고의 혜택</Text>}
         <Text style = {styles.mainsubtitle}>극한의 이득춘</Text>
         </View>
         

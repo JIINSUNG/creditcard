@@ -6,10 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 const Banner = ({navigation} : any) => {
     return (<View style = {styles.banner}>
         <View>
-        <Image source={require('../assets/splash.png')} style = {{width :40, height : 40}}></Image>
+        <Image source={require('../assets/logo.jpg')} style = {{width :60, height : 60}}></Image>
         <Text style = {styles.bannertitle}>극한의 이득춘</Text>
         </View>
-        <View><Text style = {styles.bannertitle}>메뉴</Text></View>
+        <View><Text onPress={()=> {navigation.navigate('Menu')}} style = {styles.bannertitle}>메뉴</Text></View>
           
         </View>
     )
